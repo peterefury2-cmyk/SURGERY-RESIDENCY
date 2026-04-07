@@ -1,0 +1,14 @@
+// Prisma schema for enhanced security features
+
+model User {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  passwordHash String   // hashed password
+  isVerified  Boolean   @default(false) // email verification status
+  authToken   String?   // token for authentication
+  loginAttempts Int      @default(0) // to track login attempts
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Option to handle rate limiting and other additional security features can be implemented in application logic.
